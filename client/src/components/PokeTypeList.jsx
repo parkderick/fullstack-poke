@@ -1,27 +1,36 @@
 import React from 'react';
 import PokeList from './PokeList.jsx';
 
-const createLists = (types) => {
-  var typeLists = []
-  for (var type in types) {
-    typeLists.push(
-      <div key={type}>
-        <h2>{type}</h2>
-        <PokeList pokemon={types[type]} showType={false} />
+class PokeTypeList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: 'Grass'
+    }
+  }
+
+  createOptions(object) {
+    var options = [];
+    for (var key in object) {
+      options.push(<option key={key}>{key}</option>)
+    }
+    return options;
+  }
+
+
+  render() {
+    return (
+      <div>
+        <select onChange={(e) => this.setState({ selected: e.target.value })}>
+          {this.createOptions(this.props.types)}
+        </select>
+        <PokeList pokemon={this.props.types[this.state.selected]} showType={false} />
       </div>
     )
   }
-  return typeLists;
 }
 
-const PokeTypeList = ({ types }) => {
-  var lists = createLists(types);
 
-  return (
-    <div>
-      {lists}
-    </div>
-  )
-}
+
 
 export default PokeTypeList;
