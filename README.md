@@ -15,6 +15,11 @@
 - Refactor your client to dynamically render using the information from your server
 
 ### Step 3
-- Add a dropdown to your client that will allow you to pick an individual group to see
+- Add a dropdown to your client that will allow you to pick an individual type to see
 
+### EXTRA
+- Create an additional route to that uses req.params to get a type of pokemon
+- Create an additional route that returns all types
+- Add the ability to add a type to a pokemon
+- Add the ability to add a type to your database
 

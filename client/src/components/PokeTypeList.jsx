@@ -1,18 +1,27 @@
 import React from 'react';
+import PokeList from './PokeList.jsx';
 
-const PokeTypeList = (props) => (
-  <div>
+const createLists = (types) => {
+  var typeLists = []
+  for (var type in types) {
+    typeLists.push(
+      <div key={type}>
+        <h2>{type}</h2>
+        <PokeList pokemon={types[type]} showType={false} />
+      </div>
+    )
+  }
+  return typeLists;
+}
+
+const PokeTypeList = ({ types }) => {
+  var lists = createLists(types);
+
+  return (
     <div>
-      <h2>Grass</h2>
-      <img src="http://vignette4.wikia.nocookie.net/nintendo/images/4/43/Bulbasaur.png/revision/latest?cb=20141002083518&path-prefix=en" />
-      <p>Bulbasaur</p>
+      {lists}
     </div>
-    <div>
-      <h3>Poison</h3>
-      <img src="http://vignette4.wikia.nocookie.net/nintendo/images/4/43/Bulbasaur.png/revision/latest?cb=20141002083518&path-prefix=en" />
-      <p>Bulbasaur</p>
-    </div>
-  </div>
-)
+  )
+}
 
 export default PokeTypeList;

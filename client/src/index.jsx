@@ -2,11 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PokeList from './components/PokeList.jsx';
 import PokeTypeList from './components/PokeTypeList.jsx';
+import axios from 'axios';
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: 'id'
+      show: 'id',
+      idSort: [],
+      typeSort: []
     }
   }
 
@@ -16,6 +21,23 @@ class App extends React.Component {
     })
   }
 
+  getPokemon() {
+    axios.get('/api/pokemon')
+      .then(({data}) => {
+        this.setState({
+          idSort: data.idSort,
+          typeSort: data.typeSort
+        })
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
+  componentDidMount() {
+    this.getPokemon()
+  }
+
   render() {
     return (
       <div>
@@ -23,9 +45,9 @@ class App extends React.Component {
         <button onClick={() => this.changeorder('id')}>Show in order?</button>
         <button onClick={() => this.changeorder('type')}> Show by type?</button>
         {this.state.show === 'id' &&
-          <PokeList />}
+          <PokeList pokemon={this.state.idSort} showType={true}/>}
         {this.state.show === 'type' &&
-          <PokeTypeList />}
+          <PokeTypeList types={this.state.typeSort}/>}
       </div>
     )
   }
