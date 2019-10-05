@@ -10,7 +10,6 @@ var connection = mysql.createConnection({
 
 const getAllPokemon = function (callback
 ) {
-  // rewrite this as join
   connection.query(`select pokemon.id, pokemon.name, types.name as type, image_url from pokemon join types on type_id = types.id;`, (err, results) => {
     if (err) {
       callback(err)
@@ -20,4 +19,16 @@ const getAllPokemon = function (callback
   })
 };
 
+const getTypeOfPokemon = function (id, callback
+) {
+  connection.query(`select types.name as type from pokemon join types on type_id = types.id where pokemon.id = ${id};`, (err, results) => {
+    if (err) {
+      callback(err)
+    } else {
+      callback(null, results)
+    }
+  })
+}
+
 module.exports.getAllPokemon = getAllPokemon;
+module.exports.getTypeOfPokemon = getTypeOfPokemon;

@@ -27,6 +27,17 @@ app.get('/api/pokemon', function (req, res) {
   })
 });
 
+app.get('/api/pokemon/:id/type', function (req, res) {
+  db.getTypeOfPokemon(req.params.id, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(404).send('error getting type of pokemon at id ' + req.params.id);
+    } else {
+      res.status(200).send(result);
+    }
+  })
+})
+
 
 
 app.listen(3000, function () {
