@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var db = require('../database/index.js');
-
+var pokemon = require('./helperfunctions/pokemon.js');
 
 var app = express();
 
@@ -14,7 +14,17 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 
 app.get('/api/pokemon', function (req, res) {
-
+  var response = {};
+  db.getAllPokemon((err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(404).send('error getting pokemon')
+    } else {
+      response.idSort = results;
+      response.typeSort = pokemon.sortByType(results);
+      res.status(200).send(response)
+    }
+  })
 });
 
 

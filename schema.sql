@@ -196,6 +196,7 @@ INSERT INTO pokemon (id, name, type_id, image_url) VALUES (151, 'Mew', 13, 'http
 
 
 
+select pokemon.id, pokemon.name, types.name as type, image_url from pokemon, types where type_id = types.id;
 
 
 
