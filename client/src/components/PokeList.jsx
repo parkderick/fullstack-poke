@@ -1,10 +1,10 @@
 import React from 'react';
 import PokeListEntry from './PokeListEntry.jsx';
 
-const PokeList = ({ pokemon, showType }) => (
+const PokeList = ({ types, pokemon, showType }) => (
   <div>
     {pokemon.map((poke, i) => (
-      <PokeListEntry pokemon={poke} key={i} showType={showType}/>
+      <PokeListEntry types={types} pokemon={poke} key={i} showType={showType}/>
     ))}
   </div>
 )

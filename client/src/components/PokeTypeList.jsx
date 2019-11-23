@@ -24,7 +24,7 @@ class PokeTypeList extends React.Component {
         <select onChange={(e) => this.setState({ selected: e.target.value })}>
           {this.createOptions(this.props.types)}
         </select>
-        <PokeList pokemon={this.props.types[this.state.selected]} showType={false} />
+        <PokeList types={Object.keys(this.props.types)} pokemon={this.props.types[this.state.selected]} showType={false} />
       </div>
     )
   }
