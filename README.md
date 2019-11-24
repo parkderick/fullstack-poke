@@ -23,3 +23,4 @@
 - Add the ability to add a type to a pokemon
 - Add the ability to add a type to your database
 
+- LOOK AT STEP 3

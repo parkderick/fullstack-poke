@@ -1,12 +1,14 @@
 import React from 'react';
 
-const PokeList = (props) => (
+const PokeList = ({pokemon}) => (
   <div>
-    <div>
-      <img src="http://vignette4.wikia.nocookie.net/nintendo/images/4/43/Bulbasaur.png/revision/latest?cb=20141002083518&path-prefix=en"/>
-      <h3>Bulbasaur</h3>
-      <p>Grass, Poison</p>
-    </div>
+    {pokemon.map((poke, index) => (
+      <div key={index}>
+        <img src={poke.image_url}/>
+        <h3>{poke.name}</h3>
+        <p>{poke.moves}</p>
+      </div>
+    ))}
   </div>
 )
 
